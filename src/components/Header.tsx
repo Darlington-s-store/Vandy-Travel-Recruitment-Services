@@ -14,14 +14,7 @@ const Header: React.FC = () => {
     { name: 'About', href: '/about' },
     { 
       name: 'Services', 
-      href: '/services',
-      hasDropdown: true,
-      dropdownItems: [
-        { name: 'Recruitment Services', href: '/services#recruitment' },
-        { name: 'Visa Services', href: '/services#visa' },
-        { name: 'Travel Services', href: '/services#travel' },
-        { name: 'Corporate Services', href: '/services#corporate' }
-      ]
+      href: '/services'
     },
     { name: 'Study Abroad', href: '/study-abroad' },
     { name: 'Country Packages', href: '/country-packages' },
@@ -185,8 +178,7 @@ const Header: React.FC = () => {
               <div className="px-4 py-6 space-y-4">
                 {navigation.map((item) => (
                   <div key={item.name}>
-                    <Link
-                      to={item.href}
+                    <div onClick={() => setIsMenuOpen(false)}
                       className={`block text-base font-medium transition-colors ${
                         location.pathname === item.href
                           ? 'text-primary-600'
@@ -198,27 +190,13 @@ const Header: React.FC = () => {
                               ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-3 py-2 rounded-full hover:shadow-lg' 
                               : ''
                         }`}
-                      onClick={() => setIsMenuOpen(false)}
                     >
-                      {item.name}
-                    </Link>
-                    {item.hasDropdown && (
-                      <div className="ml-4 mt-2 space-y-2">
-                        {item.dropdownItems?.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.name}
-                            to={dropdownItem.href}
-                            className="block text-sm text-gray-500 hover:text-primary-600"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {dropdownItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                      <Link to={item.href} className="block">
+                        {item.name}
+                      </Link>
+                    </div>
                   </div>
                 ))}
-
               </div>
             </motion.div>
           )}
