@@ -125,7 +125,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[80vh] sm:h-[90vh] flex flex-col items-center justify-center overflow-hidden px-4 py-8 sm:py-12 md:py-16">
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-primary-800/80 to-secondary-600/90 z-10" />
@@ -137,7 +137,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 sm:space-y-12">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -146,18 +146,18 @@ const HomePage: React.FC = () => {
             <motion.img
               src="/logo.jpg"
               alt="Vandy Recruitment"
-              className="w-24 h-24 mx-auto mb-6 rounded-full shadow-2xl"
+              className="w-20 h-20 mx-auto mb-4 rounded-full shadow-2xl sm:w-24 sm:h-24 sm:mb-6"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             />
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               Reliable, Smooth & 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-accent-400">
                 {' '}Accurate
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-6 sm:mb-8">
               Travel and Recruitment Services connecting talent with opportunities worldwide
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -223,7 +223,7 @@ const HomePage: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
               >
-                <div className="flex flex-col items-center text-center">
+                <div className="flex flex-col space-y-4 sm:space-y-6 mt-6 sm:mt-8">
                   <div className="bg-primary-50 rounded-full p-4 mb-6">
                     <stat.icon className="h-12 w-12 text-primary-600" />
                   </div>

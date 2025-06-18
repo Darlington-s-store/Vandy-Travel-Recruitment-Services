@@ -224,22 +224,7 @@ const Header: React.FC = () => {
                     </div>
                   );
                 })}
-                <div className="space-y-3 pt-4 border-t">
-                  <Link
-                    to="/book-appointment"
-                    className="block bg-gradient-to-r from-secondary-500 to-accent-500 text-white px-6 py-3 rounded-lg font-medium text-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Book Appointment
-                  </Link>
-                  <Link
-                    to="/apply"
-                    className="block bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-3 rounded-lg font-medium text-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Apply Now
-                  </Link>
-                </div>
+
               </div>
             </motion.div>
           )}
