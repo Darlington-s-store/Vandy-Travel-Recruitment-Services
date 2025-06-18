@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,20 +45,6 @@ const Header: React.FC = () => {
       <div className="bg-primary-700 text-white py-2 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-6">
-              <a href="tel:+233555012965" className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
-                <Phone className="h-4 w-4" />
-                <span>🇬🇭 +233 555 012 965</span>
-              </a>
-              <a href="tel:+971559850526" className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
-                <Phone className="h-4 w-4" />
-                <span>🇦🇪 +971 559 850 526</span>
-              </a>
-              <a href="mailto:info@vandyrecruitment.com" className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
-                <Mail className="h-4 w-4" />
-                <span>info@vandyrecruitment.com</span>
-              </a>
-            </div>
             <div className="hidden md:flex items-center space-x-4">
               <Globe className="h-4 w-4" />
               <span>24/7 Global Support Available</span>
