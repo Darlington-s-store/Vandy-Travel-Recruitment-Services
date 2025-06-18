@@ -129,11 +129,18 @@ const HomePage: React.FC = () => {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-primary-800/80 to-secondary-600/90 z-10" />
-          <img
-            src="https://images.pexels.com/photos/936722/pexels-photo-936722.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-            alt="Dubai Skyline"
-            className="w-full h-full object-cover"
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/assets/plane 1.mp4" type="video/mp4" />
+            <source src="/assets/plane 2.mp4" type="video/mp4" />
+            <source src="/assets/palne.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         {/* Content */}
