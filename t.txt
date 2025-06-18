@@ -1,0 +1,2 @@
+<p className="text-blue-100 text-sm">+233 555 012 965</p>
+                  <p className="text-blue-100 text-sm">🇦🇪 +971 559 850 526</p>
