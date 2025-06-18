@@ -183,47 +183,41 @@ const Header: React.FC = () => {
               transition={{ duration: 0.3 }}
             >
               <div className="px-4 py-6 space-y-4">
-                {navigation.map((item) => {
-                  // Skip Blog and Contact in mobile menu
-                  if (item.name === 'Blog' || item.name === 'Contact') return null;
-                  return (
-                    <div key={item.name}>
-                      <Link
-                        to={item.href}
-                        className={`block text-base font-medium transition-colors ${
-                          location.pathname === item.href
-                            ? 'text-primary-600'
-                            : 'text-gray-600 hover:text-primary-600'
+                {navigation.map((item) => (
+                  <div key={item.name}>
+                    <Link
+                      to={item.href}
+                      className={`block text-base font-medium transition-colors ${
+                        location.pathname === item.href
+                          ? 'text-primary-600'
+                          : 'text-gray-600 hover:text-primary-600'
                         } ${
-                          item.name === 'Blog' || item.name === 'Contact' 
-                            ? 'bg-primary-50 hover:bg-primary-100' 
-                            : item.name === 'Book Now' 
-                              ? 'bg-gradient-to-r from-secondary-500 to-accent-500 text-white px-3 py-2 rounded-full hover:shadow-lg' 
-                              : item.name === 'Enroll Now' 
-                                ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-3 py-2 rounded-full hover:shadow-lg' 
-                                : ''
+                          item.name === 'Book Now' 
+                            ? 'bg-gradient-to-r from-secondary-500 to-accent-500 text-white px-3 py-2 rounded-full hover:shadow-lg' 
+                            : item.name === 'Enroll Now' 
+                              ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-3 py-2 rounded-full hover:shadow-lg' 
+                              : ''
                         }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                      {item.hasDropdown && (
-                        <div className="ml-4 mt-2 space-y-2">
-                          {item.dropdownItems?.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.name}
-                              to={dropdownItem.href}
-                              className="block text-sm text-gray-500 hover:text-primary-600"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {dropdownItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                    {item.hasDropdown && (
+                      <div className="ml-4 mt-2 space-y-2">
+                        {item.dropdownItems?.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.name}
+                            to={dropdownItem.href}
+                            className="block text-sm text-gray-500 hover:text-primary-600"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
 
               </div>
             </motion.div>
