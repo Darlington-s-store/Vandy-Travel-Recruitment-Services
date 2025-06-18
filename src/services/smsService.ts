@@ -1,11 +1,16 @@
-// SMS Service using Arkesel API
-const ARKESEL_API_KEY = import.meta.env.VITE_ARKESEL_API_KEY || 'your-arkesel-api-key';
-const ARKESEL_BASE_URL = 'https://sms.arkesel.com/api/v2/sms';
+import { SMS_CONFIG } from '../config/smsConfig';
+
+const ARKESEL_API_KEY = SMS_CONFIG.apiKey;
+const ARKESEL_BASE_URL = SMS_CONFIG.baseUrl;
 
 interface SMSResponse {
   success: boolean;
   message: string;
-  data?: any;
+  data?: {
+    status?: string;
+    message?: string;
+    error?: string;
+  };
 }
 
 export const sendWelcomeSMS = async (phoneNumber: string): Promise<SMSResponse> => {
@@ -39,7 +44,7 @@ Your journey to success starts here!`;
     if (response.ok) {
       return {
         success: true,
-        message: 'Welcome SMS sent successfully',
+        message: 'SMS sent successfully',
         data: data,
       };
     } else {
