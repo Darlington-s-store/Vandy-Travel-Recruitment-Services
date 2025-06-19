@@ -3,13 +3,25 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 
+interface DropdownItem {
+  name: string;
+  href: string;
+}
+
+interface NavigationItem {
+  name: string;
+  href: string;
+  hasDropdown?: boolean;
+  dropdownItems?: DropdownItem[];
+}
+
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
 
-  const navigation = [
+  const navigation: NavigationItem[] = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { 
@@ -109,11 +121,12 @@ const Header: React.FC = () => {
                             exit={{ opacity: 0, y: 10 }}
                             transition={{ duration: 0.2 }}
                           >
-                            {item.dropdownItems?.map((dropdownItem) => (
+                            {item.dropdownItems?.map((dropdownItem: DropdownItem) => (
                               <Link
                                 key={dropdownItem.name}
                                 to={dropdownItem.href}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                                className="block text-sm text-gray-500 hover:text-primary-600"
+                                onClick={() => setIsMenuOpen(false)}
                               >
                                 {dropdownItem.name}
                               </Link>

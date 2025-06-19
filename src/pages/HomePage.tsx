@@ -203,6 +203,31 @@ const HomePage: React.FC = () => {
 
       </section>
 
+      {/* Promo Video Section */}
+      <section className="relative py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
+            <video
+              autoPlay
+              loop
+              playsInline
+              controls
+              className="w-full h-full object-cover"
+            >
+              <source src="/assets/Promo video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 flex items-center justify-center z-20">
+              <div className="text-center text-white">
+                <h2 className="text-3xl font-bold mb-4">Welcome to Vandy Recruitment</h2>
+                <p className="text-lg max-w-2xl mx-auto">Discover how we help connect talent with opportunities worldwide</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
