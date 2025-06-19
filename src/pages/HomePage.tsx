@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { HTMLVideoElement } from 'react';
 import { 
   ArrowRight, 
   Globe, 
@@ -24,6 +25,19 @@ import TrustIndicators from '../components/TrustIndicators';
 import JobAlerts from '../components/JobAlerts';
 
 const HomePage: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  // Initialize video duration when component mounts
+  React.useEffect(() => {
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
+    }
+  }, []);
+
   const stats = [
     { label: 'Countries Served', value: '50+', icon: Globe },
     { label: 'Jobs Placed', value: '10K+', icon: Users },
@@ -206,22 +220,76 @@ const HomePage: React.FC = () => {
       {/* Promo Video Section */}
       <section className="relative py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg" onClick={(e) => {
+            e.preventDefault();
+            if (isPlaying) {
+              videoRef.current?.pause();
+            } else {
+              videoRef.current?.play();
+            }
+            setIsPlaying(!isPlaying);
+          }}>
             <video
+              ref={videoRef}
               autoPlay
               loop
               playsInline
-              controls
               className="w-full h-full object-cover"
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onTimeUpdate={(e) => {
+                const video = e.target as HTMLVideoElement;
+                setCurrentTime(video.currentTime);
+                setProgress((video.currentTime / video.duration) * 100);
+              }}
             >
               <source src="/assets/Promo video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 bg-black/40 z-10" onClick={(e) => e.stopPropagation()} />
             <div className="absolute inset-0 flex items-center justify-center z-20">
               <div className="text-center text-white">
                 <h2 className="text-3xl font-bold mb-4">Welcome to Vandy Recruitment</h2>
                 <p className="text-lg max-w-2xl mx-auto">Discover how we help connect talent with opportunities worldwide</p>
+              </div>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center z-30">
+              <button
+                onClick={() => {
+                  if (isPlaying) {
+                    videoRef.current?.pause();
+                  } else {
+                    videoRef.current?.play();
+                  }
+                }}
+                className="p-3 bg-white/10 backdrop-blur rounded-full hover:bg-white/20 transition-colors"
+              >
+                <span className="text-white">
+                  {isPlaying ? '⏸️' : '▶️'}
+                </span>
+              </button>
+              <div className="flex items-center space-x-4">
+                <div className="text-sm text-white">
+                  {Math.floor(currentTime / 60)}:{String(Math.floor(currentTime % 60)).padStart(2, '0')}
+                </div>
+                <div className="w-full">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={progress}
+                    onChange={(e) => {
+                      const newTime = (duration * parseInt(e.target.value)) / 100;
+                      if (videoRef.current) {
+                        videoRef.current.currentTime = newTime;
+                      }
+                    }}
+                    className="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer"
+                  />
+                </div>
+                <div className="text-sm text-white">
+                  {Math.floor(duration / 60)}:{String(Math.floor(duration % 60)).padStart(2, '0')}
+                </div>
               </div>
             </div>
           </div>
